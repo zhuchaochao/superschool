@@ -1,0 +1,43 @@
+
+<ion-view hide-tabs title="失物详情">
+
+    <ion-content padding="true">
+
+        <div class="first_shiWu">
+           <div align="center">
+            <img ng-if="shiWuZhaoLingContentData[0].tuPianLuJing" ng-src={{ENV.imgUrl}}{{shiWuZhaoLingContentData[0]['tuPianLuJing']}}>
+                <img ng-if="!shiWuZhaoLingContentData[0].tuPianLuJing" ng-src="img/ionic.png"></div>
+            <h3 >物品名称：{{shiWuZhaoLingContentData[0]['wuPinMingCheng']}}</h3>
+            <h3>地点：{{shiWuZhaoLingContentData[0]['diDian']}}</h3>
+            <h3>时间：{{shiWuZhaoLingContentData[0]['shiJian']}}</h3>
+            <h3>物品特征：{{shiWuZhaoLingContentData[0]['teZheng']}}</h3>
+            <h3>联系方式：</h3>
+			<h3>联系人：{{shiWuZhaoLingContentData[0]['lianXiRen']}}</h3>
+			<h3>联系电话:{{shiWuZhaoLingContentData[0]['lianXiDianHua']}}</h3>
+            <h3>微信号：{{shiWuZhaoLingContentData[0]['weiXinHaoMa']}}</h3>
+			<h3>QQ号：{{shiWuZhaoLingContentData[0]['qqHaoMa']}}</h3>
+        </div>
+
+<div class="list" id="comment">
+            <div class="item item-avatar"
+                 ng-repeat="pingLun in shiWuZhaoLingContentData[0].pingLunlist">
+				 <img class="avatar" ng-src="">
+				 <h2 class="positive" >{{pingLun.pingLunZhe}}:{{pingLun.neiRong}}</h2>
+				 <div class="reply">
+                    <button class="button icon   ion-chatbox-working"
+                            ng-click="reReply(pingLun.id,pingLun.pingLunZhe,pingLun.pingLunZheId)"></button>
+                </div>
+				 </div>
+			</div>
+    </ion-content>
+	<ion-footer-bar align-title="left" class="bar-light reply-new" keyboard-attach>
+        <label class="item-input-wrapper">
+            <input type="text" ng-disabled="replyData.accesstoken == ''"  ng-model="replyData.content"
+                   >
+        </label>
+        <button class="button button-small button-clear button-positive" ng-click="saveReply()"
+                ng-disabled="replyData.accesstoken == ''||replyData.content == ''">
+            提交
+        </button>
+    </ion-footer-bar>
+</ion-view>

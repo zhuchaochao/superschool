@@ -1,0 +1,41 @@
+<ion-view view-title="消息">
+<ion-nav-buttons side="left">
+        <a class="button button-clear icon ion-reply" href="index.html#/tab/sheTuan"></a>
+    </ion-nav-buttons>
+  <ion-content padding="true">
+
+<div class="list" id="comment">
+<h2>未读消息</h2>
+            <div class="item item-avatar"
+                 ng-repeat="pingLun1 in messageData[0].weiDuPingLunList">
+				 <img class="avatar" ng-src="">
+				 <h2 class="positive" >{{pingLun1.pingLunZhe}}:{{pingLun1.neiRong}}</h2>
+				 <div class="reply">
+                    <button class="button icon   ion-chatbox-working"
+                            ng-click="reReply(pingLun1.id,pingLun1.wuPinID,pingLun1.pingLunZhe,pingLun1.pingLunZheId)"></button>
+                </div>
+				 </div>
+			</div>
+<h2>已读消息</h2>
+			<div class="item item-avatar"
+                 ng-repeat="pingLun2 in messageData[0].yiDuPingLunList">
+				 <img class="avatar" ng-src="">
+				 <h2 class="positive" >{{pingLun2.pingLunZhe}}:{{pingLun2.neiRong}}</h2>
+				 <div class="reply">
+                    <button class="button icon   ion-chatbox-working"
+                            ng-click="reReply(pingLun2.id,pingLun2.pingLunZhe,pingLun2.pingLunZheId)"></button>
+                </div>
+				 </div>
+			</div>
+    </ion-content>
+	<ion-footer-bar align-title="left" class="bar-light reply-new" keyboard-attach>
+        <label class="item-input-wrapper">
+            <input type="text" ng-disabled="replyData.accesstoken == ''" placeholder="请登录后回复" ng-model="replyData.content"
+                   >
+        </label>
+        <button class="button button-small button-clear button-positive" ng-click="saveReply()"
+                ng-disabled="replyData.accesstoken == ''||replyData.content == ''">
+            提交
+        </button>
+    </ion-footer-bar>
+</ion-view>

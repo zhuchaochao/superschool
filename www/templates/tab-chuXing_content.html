@@ -1,0 +1,20 @@
+
+<ion-view hide-tabs title="出行详情">
+
+    <ion-content padding="true">
+
+        <div class="first_chuXing">
+           <div align="center">
+		    <img ng-if="ChuXingContentData[0].jingDianTuPian" ng-src={{ENV.imgUrl}}{{ChuXingContentData[0]['jingDianTuPian']}}>
+             <img ng-if="!ChuXingContentData[0].jingDianTuPian" ng-src="img/ionic.png">
+				</div>
+				<h2>出发地：{{ChuXingContentData[0]['chuFaDi']}}</h2>
+                <h2>目的地：{{ChuXingContentData[0]['muDiDi']}}</h2>
+                <h2>出行方式：{{ChuXingContentData[0]['chuXingFangShi']}}</h2>
+				<h2>返程方式：{{ChuXingContentData[0]['fanChengFangShi']}}</h2>
+				<h2>出行建议：{{ChuXingContentData[0]['chuXingJianYi']}}</h2>
+				<h2>游玩建议：{{ChuXingContentData[0]['youWanJianYi']}}</h2>
+				<h2>景区简介：{{ChuXingContentData[0]['jianJie']}}</h2>
+        </div>
+    </ion-content>
+</ion-view>

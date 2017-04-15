@@ -1,0 +1,108 @@
+<ion-view view-title="失物招领">
+<ion-nav-buttons side="right">
+        <button menu-toggle="right" class="button" ng-click="release()">发布</button>
+    </ion-nav-buttons>
+    <div class="tabs-striped tabs-top" >
+        <div class="tabs tabs-top" id="swzlTopTabList">
+            <a class="tab-item active" ng-click="changeTab('NO',0)">
+                <span>我捡到了物品</span>
+            </a>
+            <a class="tab-item" ng-click="changeTab('YES',1)">
+                <span>我丢失了物品</span>
+            </a>
+        </div>
+    </div>
+    <ion-content class="padding" style="padding-top: 15%">
+        <ion-refresher
+                pulling-text="下拉刷新..."
+                on-refresh="doRefresh()">
+        </ion-refresher>
+        <div ng-if="showloading" style="margin-top:60px; text-align: center">
+            <ion-spinner icon="android" style="height: 60px; width: 60px;;"></ion-spinner>
+        </div>
+        <ion-list class="topics_list" ng-if="showloading==false">
+            <ion-item class="item-thumbnail-left" collection-repeat="topic in portalListData"
+                      collection-item-width="100%" collection-item-height="88px" href="#/tab/shiWuZhaoLing_content/{{topic.id}}">
+                <img ng-if="topic.tuPianLuJing" ng-src={{ENV.imgUrl}}{{topic.tuPianLuJing}}>
+                <img ng-if="!topic.tuPianLuJing" ng-src="img/ionic.png">
+                <h2>物品名称：{{topic.wuPinMingCheng}}</h2>
+                <h2>地点：{{topic.diDian}}</h2>
+                <h2>时间：{{topic.shiJian}}</h2>
+            </ion-item>
+        </ion-list>
+        <ion-infinite-scroll   on-infinite="loadMore()"  distance="1%" ng-if="hasNextPage()">        </ion-infinite-scroll>
+    </ion-content>
+	<script id="release.html" type="text/ng-template">
+        <ion-modal-view>
+            <ion-header-bar class="bar-positive">
+                <h1 class="title">失物招领</h1>
+                <a class="button" ng-click="close();">关闭</a>
+
+                <!--<a class="button" ng-click="removeModal();">remove</a>-->
+            </ion-header-bar>
+            <ion-content>
+			<form>
+                <div class="padding">
+                    <div class="list">
+                        <label class="item item-input item-select">
+                            <div class="input-label">
+                                发布分类
+                            </div>
+                            <select  ng-model="topicsData.shiFouDiuShi">
+                                <option selected value='YES'>丢失发布</option>
+                                <option value='NO'>拾获发布</option>
+                            </select>
+                        </label>
+                    </div>
+						<div class="list">
+							<div class="item">
+								<div class="buttons">
+									<button class="button button-small button-balanced" ng-click="addPhoto();">添加</button>								
+								</div>
+							</div>
+							
+							<div class="item" ng-show="imageSrc != undefined">
+								<img ng-src="{{imageSrc}}" class="full-image" style="width:150px;height:150px;"/>
+							</div>
+						</div>
+                    <div class="list">
+                        <label class="item item-input">
+                            <span class="input-label">物品名称：</span>
+                            <input ng-model="topicsData.wuPinMingCheng" type="text">
+                        </label>
+                        <label class="item item-input">
+                            <span class="input-label">丢失/拾获地点：</span>
+                            <input ng-model="topicsData.diDian" type="text">
+                        </label>
+						 <label class="item item-input">
+                            <span class="input-label">丢失/拾获时间：</span>
+                            <input ng-model="topicsData.shiJian" type="date">
+                        </label>
+                        <label class="item">
+                            <span class="label">物品描述:</span>
+                            <textarea ng-model="topicsData.teZheng" placeholder="字数限制在50字以内" style="width: 100%;height: 100%"></textarea>
+                        </label>
+						<label class="item item-input">
+                            <span class="input-label">联系人：</span>
+                            <input ng-model="topicsData.lianXiRen" type="text">
+                        </label>
+                        <label class="item item-input">
+                            <span class="input-label">联系电话：</span>
+                            <input ng-model="topicsData.lianXiDianHua" type="text">
+                        </label>
+						 <label class="item item-input">
+                            <span class="input-label">QQ号码：</span>
+                            <input ng-model="topicsData.qqHaoMa" type="text">
+                        </label>
+						 <label class="item item-input">
+                            <span class="input-label">微信号码：</span>
+                            <input ng-model="topicsData.weiXinHaoMa" type="text">
+                        </label>
+                        <button class="button button-full button-positive" ng-click="uploadPhoto();">发布</button>
+                    </div>
+                </div>
+			</form>
+            </ion-content>
+        </ion-modal-view>
+    </script>
+</ion-view>

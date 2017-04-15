@@ -1,0 +1,20 @@
+<ion-view view-title="出行">
+    <ion-content class="padding">
+         <ion-refresher
+                pulling-text="下拉刷新..."
+                on-refresh="doRefresh()">
+        </ion-refresher>
+        <div ng-if="showloading" style="margin-top:60px; text-align: center">
+            <ion-spinner icon="android" style="height: 60px; width: 60px;;"></ion-spinner>
+        </div>
+        <ion-list class="topics_list" ng-if="showloading==false">
+            <ion-item class="item-thumbnail-left" collection-repeat="topic in chuXingListData"
+                      collection-item-width="100%" collection-item-height="88px" href="#/tab/chuXing_content/{{topic.id}}">
+                <img ng-if="topic.jingDianTuPian" ng-src={{ENV.imgUrl}}{{topic.jingDianTuPian}}>
+                <img ng-if="!topic.jingDianTuPian" ng-src="img/ionic.png">
+				<h2>景区简介：{{topic.jianJie}}</h2>
+            </ion-item>
+        </ion-list>
+        <ion-infinite-scroll   on-infinite="loadMore()"  distance="1%" ng-if="hasNextPage()">        </ion-infinite-scroll>
+    </ion-content>
+</ion-view>

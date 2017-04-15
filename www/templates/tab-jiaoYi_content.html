@@ -1,0 +1,16 @@
+
+<ion-view hide-tabs title="交易详情">
+
+    <ion-content padding="true">
+
+        <div class="first_jiaoYi">
+		<div align="center">
+		    <img ng-if="JiaoYiContentData[0].wuPinTuPian" ng-src={{ENV.imgUrl}}{{JiaoYiContentData[0]['wuPinTuPian']}}>
+             <img ng-if="!JiaoYiContentData[0].wuPinTuPian" ng-src="img/ionic.png">
+				</div>
+            <h3 >物品名称：{{JiaoYiContentData[0]['wuPinMingCheng']}}</h3>
+            <h3>价格：{{JiaoYiContentData[0]['wuPinJiaGe']}}</h3>
+            <h3>发布时间：{{JiaoYiContentData[0]['faBuShiJian']}}</h3>
+			<h3>物品描述:{{JiaoYiContentData[0]['wuPinmiaoShu']}}</h3>
+        </div>
+</ion-view>

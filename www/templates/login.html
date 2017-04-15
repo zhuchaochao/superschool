@@ -1,0 +1,24 @@
+<ion-view view-title="用户登录">
+  <ion-content>
+     <div>
+            <form novalidate="novalidate" on-valid-submit="doLogin()">
+                <label class="item item-input validated">
+                    <span class="input-label" for="niCheng">昵称</span>
+                    <input id="account" type="text" ng-model="user.name" placeholder="昵称" required="required" name="niCheng" />
+                    <i class="icon ion-alert-circled error"></i>
+                </label>
+                <label class="item item-input validated">
+                    <span class="input-label" for="miMa">密码</span>
+                    <input id="password" type="password" ng-model="user.password" placeholder="********" required="required" name="miMa" />
+                    <i class="icon ion-alert-circled error"></i>
+                </label>
+                <label class="item">
+                    <button type="submit" class="button button-block button-positive icon ion-person icon-text">登录</button>
+                </label>
+            </form>
+				<label class="item">
+                    <button class="button button-block button-positive icon  icon-text" ng-click="zhuce()">还没账号</button>
+                </label>
+        </div>
+  </ion-content>
+</ion-view>

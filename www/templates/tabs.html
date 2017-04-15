@@ -1,0 +1,84 @@
+<!--
+Create tabs with an icon and label, using the tabs-positive style.
+Each tab's child <ion-nav-view> directive will have its own
+navigation history that also transitions its views in and out.
+--><ion-side-menus>
+
+    <ion-side-menu-content>
+        <ion-nav-bar class="bar-positive">
+            <ion-nav-back-button class="button-icon ion-arrow-left-c">
+    </ion-nav-back-button >
+            <ion-nav-buttons side="left" >
+                <button class="button button-icon button-clear ion-android-person" ng-click="toggleLeft()">
+                </button>
+            </ion-nav-buttons>
+        </ion-nav-bar>
+
+
+        <!--
+        在这里加上tab
+
+        -->
+        <ion-tabs class="tabs-icon-top tabs-stable tabs-color-positive {{hideTabs}}">
+
+            <!-- Dashboard Tab -->
+            <ion-tab title="社团" icon="ion-android-contacts" href="#/tab/sheTuan">
+                <ion-nav-view name="tab-sheTuan"></ion-nav-view>
+            </ion-tab>
+
+            <!-- Chats Tab -->
+            <ion-tab title="失物招领" icon="ion-cube" href="#/tab/shiWuZhaoLing">
+                <ion-nav-view name="tab-shiWuZhaoLing"></ion-nav-view>
+            </ion-tab>
+            <ion-tab title="出行" icon="ion-android-bicycle" href="#/tab/chuXing">
+                <ion-nav-view name="tab-chuXing"></ion-nav-view>
+            </ion-tab>
+
+            <ion-tab title="校园交易" icon="ion-bag" href="#/tab/xiaoYuanJiaoYi">
+                <ion-nav-view name="tab-xiaoYuanJiaoYi"></ion-nav-view>
+            </ion-tab>
+        </ion-tabs>
+
+
+        <ion-nav-view name="menuContent"></ion-nav-view>
+    </ion-side-menu-content>
+
+    <ion-side-menu side="left">
+        <ion-header-bar class="bar-assertive">
+            <h1 class="title">我</h1>
+        </ion-header-bar>
+        <ion-content>
+           <ion-list>
+            <ion-item class="item-divider item-gap">
+            </ion-item>
+            <ion-item ng-if="!userData[0].accesstoken" class="login text-center">
+					<button class="button button-block button-positive " ng-click="login()">登录</button>
+            </ion-item>
+			<ion-item ng-if="userData[0].accesstoken" class="login text-center">
+                <img ng-if="!userData[0].touXiangLuJing" src="img/person.png" class="avatar">
+				<img ng-if="userData[0].touXiangLuJing" src={{ENV.imgUrl}}{{userData[0].touXiangLuJing}} class="avatar">
+                <p></p>
+                <h3>{{userData[0].niCheng}}</h3>
+				<div ng-if="messageData[0].weiDuPingLunList.length==0" class="button-bar bar-light text-center">
+                <a class="button button-outline button-positive" tab-state  ng-click="goMsg()">
+               <span ng-class="{true:'red-point',false:''}[false]">通知</span>
+				</a>	
+            </div>
+			<div ng-if="messageData[0].weiDuPingLunList.length!==0" class="button-bar bar-light text-center">
+                <a class="button button-outline button-positive" tab-state  ng-click="goMsg()">
+               <span ng-class="{true:'red-point',false:''}[true]">通知</span>
+				</a>	
+            </div>
+			<div ng-if="messageData[0].sheTuanList.length!==0" class="button-bar bar-light text-center">
+			<a class="button button-outline button-positive" tab-state  ng-click="goMySheTuan()">我的社团</a>
+			 </div>
+            </ion-item>
+            <ion-item ng-if="userData[0].accesstoken" class="login text-center">
+		<button class="button button-block button-positive " ng-click="zhuxiao()">注销</button>
+			</ion-item>
+        </ion-content>
+    </ion-side-menu>
+
+</ion-side-menus>
+
+

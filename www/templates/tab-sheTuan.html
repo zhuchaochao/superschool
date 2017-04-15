@@ -1,0 +1,111 @@
+<ion-view view-title="社团">
+<ion-nav-buttons side="right">
+        <button menu-toggle="right" class="button" ng-click="CJST()">创建社团</button>
+    </ion-nav-buttons>
+    <div class="tabs-striped tabs-top" >
+        <div class="tabs tabs-top" id="stTopTabList">
+            <a class="tab-item active" ng-click="changeTab(0,'zxhd')">
+                <span>最新活动</span>
+            </a>
+            <a class="tab-item" ng-click="changeTab(1,'styl')">
+                <span>社团一览</span>
+            </a>
+        </div>
+    </div>
+    <ion-content class="padding" style="padding-top: 10%">
+		<ion-slide-box does-continue="true" show-pager="true" ng-if="showloading==false&&mokuai=='zxhd'">
+            <ion-slide >
+                <img  src="img/s-1.jpg">
+            </ion-slide>
+            <ion-slide>
+                <img  src="img/s-2.jpg">
+            </ion-slide>
+            <ion-slide>
+                <img  src="img/s-3.jpg">
+            </ion-slide>
+            <ion-slide>
+                <img  src="img/s-2.jpg">
+            </ion-slide>
+        </ion-slide-box>
+		 <ion-refresher
+                pulling-text="下拉刷新..."
+                on-refresh="doRefresh()">
+        </ion-refresher>
+         <div ng-if="showloading" style="margin-top:60px; text-align: center">
+            <ion-spinner icon="android" style="height: 60px; width: 60px;;"></ion-spinner>
+        </div>
+		<ion-list class="stylTopics_list" ng-if="showloading==false&&mokuai=='styl'">
+           <ion-item class="item-thumbnail-left" collection-repeat="stylTopic in stylListData"
+                      collection-item-width="100%" collection-item-height="88px"
+					  href="#/tab/sheTuanYiLan_content/{{stylTopic.id}}">
+                <!--<img ng-if="stylTopic.tuBiao" ng-src={{ENV.imgUrl}}{{stylTopic.tuBiao}}>
+                <img ng-if="stylTopic.tuBiao" ng-src="img/ionic.png">-->
+                <h2>社团名称：{{stylTopic.mingCheng}}</h2>
+                <h2>负责人：{{stylTopic.sheTuanFuZeRen}}</h2>
+            </ion-item>
+        </ion-list>
+        <ion-list class="zxhdTopics_list" ng-if="showloading==false&&mokuai=='zxhd'">
+           <ion-item  collection-repeat="zxhdTopic in zxhdListData"
+                      collection-item-width="100%" collection-item-height="88px"
+					  href="#/tab/zuiXinHuoDong_content/{{zxhdTopic.id}}">
+                <h2>活动名称：{{zxhdTopic.huoDongMingCheng}}</h2>
+                <h2>举办方：{{zxhdTopic.suoShuSheTuan}}</h2>
+                <h2>活动时间：{{zxhdTopic.huoDongShiJian}}</h2>
+            </ion-item>
+        </ion-list>
+		
+        <ion-infinite-scroll   on-infinite="loadMore()"  distance="1%" ng-if="hasNextPage()">        </ion-infinite-scroll>
+    </ion-content>
+	<script id="cjst.html" type="text/ng-template">
+        <ion-modal-view>
+            <ion-header-bar class="bar-positive">
+                <h1 class="title">创建社团</h1>
+                <a class="button" ng-click="close();">关闭</a>
+            </ion-header-bar>
+            <ion-content>
+			<form>
+                <div class="padding"> 
+						<div class="list">
+							<div class="item">
+								<div class="buttons">
+									<button class="button button-small button-balanced" ng-click="addPhoto();">添加</button>								
+								</div>
+							</div>
+							
+							<div class="item" ng-show="imageSrc != undefined">
+								<img ng-src="{{imageSrc}}" class="full-image" style="width:150px;height:150px;"/>
+							</div>
+						</div>
+                    <div class="list">
+                        <label class="item item-input">
+                            <span class="input-label">社团名称：</span>
+                            <input ng-model="cjstData.mingCheng" type="text">
+                        </label>
+                        <label class="item item-input">
+                            <span class="input-label">社团负责人</span>
+                            <input ng-model="cjstData.sheTuanFuZeRen" type="text">
+                        </label>
+						 <label class="item item-input">
+                            <span class="input-label">社团创建日期：</span>
+                            <input ng-model="cjstData.chuangJianRiQi" type="date">
+                        </label>
+						<label class="item item-input">
+                            <span class="input-label">微信群：</span>
+                            <input ng-model="cjstData.weiXinQun" type="text">
+                        </label>
+                        <label class="item item-input">
+                            <span class="input-label">qq群：</span>
+                            <input ng-model="cjstData.qqQun" type="text">
+                        </label>
+						 <label class="item">
+                            <span class="label">社团简介:</span>
+                            <textarea ng-model="cjstData.jianJie" style="width: 100%;height: 100%"></textarea>
+                        </label>
+                        <button class="button button-full button-positive" ng-click="uploadPhoto();">发布</button>
+                    </div>
+                </div>
+			</form>
+            </ion-content>
+        </ion-modal-view>
+    </script>
+</ion-view>

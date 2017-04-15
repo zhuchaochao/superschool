@@ -1,0 +1,38 @@
+<ion-view view-title="用户注册">
+<ion-nav-buttons side="left">
+        <a class="button button-clear icon ion-reply" href="index.html#/login"></a>
+    </ion-nav-buttons>
+  <ion-content>
+    <div>
+
+            <form novalidate="novalidate">
+                <label class="item item-input validated">
+                    <span class="input-label" for="niCheng">昵称</span>
+                    <input id="account" type="text" ng-model="user.name" placeholder="昵称" required="required" name="niCheng" />
+                    <i class="icon ion-alert-circled success"></i>
+                </label>
+                <label class="item item-input validated">
+                    <span class="input-label" for="miMa">密码</span>
+                    <input id="password" type="password" ng-model="user.password" placeholder="********" required="required" name="miMa" />
+                    <i class="icon ion-alert-circled error"></i>
+                </label>
+				<label class="item item-input validated">
+                    <span class="input-label" for="queRenMiMa">确认密码</span>
+                    <input id="password" type="password" ng-model="user.queRenPassword" placeholder="********" required="required" name="queRenMiMa" />
+                    <i class="icon ion-alert-circled error"></i>
+                </label>
+				<label>
+					<div class="buttons">
+							<button class="button button-small button-balanced" ng-click="addPhoto();">上传头像</button>								
+						</div>
+					<div class="item" ng-show="imageSrc != undefined">
+								<img ng-src="{{imageSrc}}" class="full-image" style="width:150px;height:150px;"/>
+					</div>
+				</label>
+                <label class="item">
+                    <button  ng-click="register();" class="button button-block button-positive icon ion-person icon-text" >注册</button>
+                </label>
+            </form>
+        </div>
+  </ion-content>
+</ion-view>

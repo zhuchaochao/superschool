@@ -1,0 +1,18 @@
+
+<ion-view hide-tabs title="社团详情">
+
+    <ion-content padding="true">
+
+        <div class="first_sheTuan">
+           <div align="center">
+            <img ng-if="STYLContentData[0].tuBiao" ng-src={{ENV.imgUrl}}{{STYLContentData[0]['tuBiao']}}>
+                <img ng-if="!STYLContentData[0].tuBiao" ng-src="img/ionic.png"></div>
+            <h3 >社团名称：{{STYLContentData[0]['mingCheng']}}</h3>
+            <h3>负责人：{{STYLContentData[0]['sheTuanFuZeRen']}}</h3>
+            <h3>创建时间：{{STYLContentData[0]['chuangJianRiQi']}}</h3>
+            <h3>微信群：{{STYLContentData[0]['weiXinQun']}}</h3>
+			<h3>QQ群：{{STYLContentData[0]['qqQun']}}</h3>
+            <h3>社团简介：</h3>
+			<h3>{{STYLContentData[0]['jianJie']}}</h3>
+        </div>
+</ion-view>
