@@ -2,6 +2,8 @@
 
  ## 此app是使用ionic+angularJS+cordova+ngCordova进行开发的。
  ```
+ ```
+
  ## 作品展示图：
 ![](https://github.com/zhuchaochao/Images/raw/master/SuperSchool/login.jpg)
 ![](https://github.com/zhuchaochao/Images/raw/master/SuperSchool/register.jpg)
